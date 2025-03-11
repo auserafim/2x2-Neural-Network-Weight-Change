@@ -8,7 +8,7 @@ def compute_input_to_hidden_weight(tk, ak, wkj, aj, ai):
     return (-((tk - ak) * (ak) * (1 - ak) * (wkj))) * ((aj) * (1 - aj) * (ai))
 
 def compute_hidden_to_output_weight(tk, ak, aj):
-    return -(tk - ak) * (ak) * (1 - ak) * aj
+    return ((-(tk - ak)) * (ak) * (1 - ak) * aj)
 
 def calcule_total_error_over_weight(weight):
     if weight == w1:
@@ -28,15 +28,13 @@ def calcule_total_error_over_weight(weight):
         y = compute_input_to_hidden_weight(o2, outo2, w8, outh2, i2)
         return x+y
     elif(weight == w5):
-        return compute_hidden_to_output_weight(o1, outo1, outh1)
+         return compute_hidden_to_output_weight(o1, outo1, outh1)
+       
     elif(weight == w6):
-        # tk, ak, aj
-        return compute_hidden_to_output_weight(o1, outo1, outh2)
+         return compute_hidden_to_output_weight(o1, outo1, outh2)
     elif(weight == w7):
-        # tk, ak, aj
         return compute_hidden_to_output_weight(o2, outo2, outh1)
     elif(weight == w8):
-        # tk, ak, aj
         return compute_hidden_to_output_weight(o2, outo2, outh2)  
 
 # weights from input layer to hidden layer
@@ -83,15 +81,26 @@ weight = globals().get(weight_string)
 
 derivative = calcule_total_error_over_weight(weight)
 
-print(f"\n\tTotal Error is : {derivative}")
+print(f"\n\tTotal Error is : {derivative:.10f}")
 
 # new weight value
-learningRate = 0.500169758515210 # default
+learningRate = 0.50016 # default
 
 new_weight = weight - (learningRate * derivative)
 
-print(f"\n\tPrevious weight was: {weight}")
+print(f"\n\tPrevious weight was: {weight:.10f}")
 
-print(f"\n\tNew weight is: {new_weight}")
+print(f"\n\tNew weight is: {new_weight:.10f}")
+
+print(f"\n\tValor de outh1: {outh1:.10f}")
+print(f"\n\tValor de outh2: {outh2:.10f}")
+print(f"\n\tValor de outo1: {outo1:.10f}")
+print(f"\n\tValor de outo2: {outo2:.10f}")
+print(f"\n\tValor de neth1: {neth1:.10f}")
+print(f"\n\tValor de neth2: {neth2:.10f}")
+
+print(f"\n\tValor de neto1: {neto1:.10f}")
+print(f"\n\tValor de neto2: {neto2:.10f}")
+
 
 
