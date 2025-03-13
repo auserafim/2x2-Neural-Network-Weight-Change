@@ -63,7 +63,7 @@ b2 = 0.60
 neth1 = (i1 * w1 + i2 * w2 + b1)
 outh1 = sigmoid(neth1)
 
-neth2 = (i2 * w4 + i2 * w3 + b1)
+neth2 = (i2 * w4 + i1 * w3 + b1)
 outh2 = sigmoid(neth2)
 
 # output layer
